@@ -1,0 +1,15 @@
+
+Pasos para la creacion de la app
+
+1) crear repositorio en github
+2) crear una copia del repositorio en el escritorio
+3) npx create-react-app cliente
+4)npm i react-router-dom
+5)DATE-FNS ---> npm i date-fns  // visibilidad de las fechas 
+6)npm i -D uuid 
+7)
+8)
+9)
+10)
+
+//Librerias: normalize, googlefont, ,bootwach, date-fns
