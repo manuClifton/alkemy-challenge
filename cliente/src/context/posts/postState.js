@@ -8,7 +8,10 @@ import postReducer from './postReducer';
 import { 
     OBTENER_POSTS,
     AGREGAR_POSTS,
-    VALIDAR_FORMULARIO
+    VALIDAR_FORMULARIO,
+    POST_ACTUAL,
+    EDITAR_POST,
+    ELIMINAR_POST
 } from '../../types';
 
 
@@ -43,7 +46,6 @@ const PostState = props =>{
         posts: [ ],
         errorformulario: false,
         post: null,
-        mensaje: null
     }
 
     //Dispatch para ejecutar acciones
@@ -70,6 +72,27 @@ const PostState = props =>{
             type: VALIDAR_FORMULARIO
         })
     }
+    //Selecciona el Post a editar
+    const postActual = postId =>{
+        dispatch({
+            type: POST_ACTUAL,
+            payload: postId
+        })
+    }
+    //editar post seleccionado
+    const editarPost = post =>{
+        dispatch({
+            type: EDITAR_POST,
+            payload: post
+        })
+    }
+    //Elimina un post
+    const eliminarPost = postId =>{
+        dispatch({
+            type: ELIMINAR_POST,
+            payload: postId
+        })
+    }
 
     return(
         <postContext.Provider
@@ -79,7 +102,10 @@ const PostState = props =>{
                 post: state.post,
                 obtenerPosts,
                 agregarPost,
-                mostrarError
+                mostrarError,
+                postActual,
+                editarPost,
+                eliminarPost
             }}
         >
             {props.children}

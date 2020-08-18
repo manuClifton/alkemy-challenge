@@ -1,3 +1,6 @@
 export const OBTENER_POSTS = 'OBTENER_POSTS';
 export const AGREGAR_POSTS = 'AGREGAR_POSTS';
 export const VALIDAR_FORMULARIO = 'VALIDAR_FORMULARIO';
+export const POST_ACTUAL = 'POST_ACTUAL';
+export const EDITAR_POST = 'EDITAR_POST';
+export const ELIMINAR_POST = 'ELIMINAR_POST';
