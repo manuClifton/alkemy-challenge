@@ -21,7 +21,7 @@ const PostState = props =>{
     const initialState = {
         posts: [ ],
         errorformulario: false,
-        post: null,
+        post: null
     }
 
     //Dispatch para ejecutar acciones
@@ -34,8 +34,8 @@ const PostState = props =>{
             const resultado = await clienteAxios.get('/api/posts');
             //console.log(resultado);
             dispatch({
-            type: OBTENER_POSTS,
-            payload: resultado.data.posteos
+                type: OBTENER_POSTS,
+                payload: resultado.data.posteos
             })
         } catch (error) {
             console.log(error);
@@ -50,10 +50,11 @@ const PostState = props =>{
 
         dispatch({
             type: AGREGAR_POSTS,
-            payload: resultado.data
+            payload: resultado.data.posteo
         })
     } catch (error) {
-         console.log(error.response);
+         console.log(error);
+         console.log('ERROR AL AGREGAR POSTEO')
     }
         
     }
@@ -77,18 +78,36 @@ const PostState = props =>{
         })
     }
     //editar post seleccionado
-    const editarPost = post =>{
-        dispatch({
-            type: EDITAR_POST,
-            payload: post
-        })
+    const editarPost = async  post =>{
+        try {
+            const resultado = await clienteAxios.put(`/api/posts/${post._id}`,post)
+            //console.log(resultado);
+            dispatch({
+                type: EDITAR_POST,
+                payload: resultado.data.posteo
+            })
+        } catch (error) {
+            console.log(error);
+            console.log("ERROR AL EDITAR");
+        }
+        
     }
     //Elimina un post
-    const eliminarPost = postId =>{
-        dispatch({
-            type: ELIMINAR_POST,
-            payload: postId
-        })
+    const eliminarPost = async postId =>{
+
+        try {
+            await clienteAxios.delete(`/api/posts/${postId}`);
+
+            dispatch({
+                type: ELIMINAR_POST,
+                payload: postId
+            })
+        } catch (error) {
+            console.log(error);
+            console.log('ERROR AL ELIMINAR')
+        }
+
+        
     }
 
     return(

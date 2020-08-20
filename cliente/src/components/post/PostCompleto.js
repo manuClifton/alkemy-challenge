@@ -24,13 +24,13 @@ const PostCompleto = ({post}) => {
                         <p>{post.contenido}</p>   
                         <div className="botonesCard">
                         <Link
-                            onClick={()=>postActual(post.id)}
+                            onClick={()=>postActual(post._id)}
                             to={`/editar-post/:${post.id}`}
                             className="btn btn-info nuevo-post d-block d-md-inline-block m-1"
                         > Editar Post
                         </Link>
                         <button
-                            onClick={()=>eliminarPost(post.id)}
+                            onClick={()=>eliminarPost(post._id)}
                             className="btn btn-warning nuevo-post d-block d-md-inline-block m-1"
                         > Eliminar &times;</button>
                     </div>   

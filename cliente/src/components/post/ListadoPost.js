@@ -11,7 +11,7 @@ const ListadoPost = () => {
 
     useEffect(() =>{
         obtenerPosts();
-    }, []);
+    }, [obtenerPosts]);
 
     return ( 
         <ul className="listado-post">

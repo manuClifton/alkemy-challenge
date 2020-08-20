@@ -22,7 +22,8 @@ export default (state, action) =>{
             return{
                 ...state,
                 posts: [...state.posts, action.payload],
-                errorformulario: false
+                errorformulario: false,
+                agregado: true
             }
         case VALIDAR_FORMULARIO:
             return{
@@ -37,19 +38,19 @@ export default (state, action) =>{
         case POST_ACTUAL:
             return{
                 ...state,
-                post: state.posts.filter(post =>post.id === action.payload )
+                post: state.posts.filter(post =>post._id === action.payload )
             }
         case EDITAR_POST:
             return{
                 ...state,
-                posts: state.posts.map(post =>post.id === action.payload.id ? action.payload : post),
+                posts: state.posts.map(post =>post._id === action.payload._id ? action.payload : post),
                 errorformulario: false,
                 post: null
             }
         case ELIMINAR_POST:
             return{
                 ...state,
-                posts: state.posts.filter(post =>post.id !== action.payload )
+                posts: state.posts.filter(post =>post._id !== action.payload )
             }
         default:
             return state;

@@ -10,6 +10,7 @@ const ListadoCard = () => {
 
     useEffect(() =>{
         obtenerPosts();
+        // eslint-disable-next-line
     }, []);
     
     return ( 

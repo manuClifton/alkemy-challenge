@@ -1,12 +1,13 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, } from 'react';
 
+//import {Link} from 'react-router-dom';
 import postContext from '../../context/posts/postContext';
 
 const NuevoPost = (props) => { 
 
     //obtengo state
     const postsContext = useContext(postContext);
-    const { agregarPost, errorformulario, mostrarError} = postsContext;
+    const {agregarPost, errorformulario, mostrarError} = postsContext;
 
     //state para el post
     const [posteo, guardarPost] = useState({
@@ -41,7 +42,9 @@ const NuevoPost = (props) => {
         //agregar al state
         agregarPost(posteo);
         //reiniciar el form y redireccionar a inicio
+        
         props.history.push('/');
+        window.location.reload();
     }
     
     
@@ -83,6 +86,8 @@ const NuevoPost = (props) => {
                          </div>
                          <button
                              type="submit"
+                            //to={'/'}
+                            onClick={onSubmitPost}
                              className="btn btn-primary font-weight-bold text-uppercase d-block w-100" 
                          > Agregar Post</button>
                      </form>
