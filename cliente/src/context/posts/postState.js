@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid, { v4 as uuidv4 } from 'uuid';
-
+//import uuid, { v4 as uuidv4 } from 'uuid';
 
 import postContext from './postContext';
 import postReducer from './postReducer';
@@ -9,39 +8,16 @@ import {
     OBTENER_POSTS,
     AGREGAR_POSTS,
     VALIDAR_FORMULARIO,
+    BORRAR_ERROR,
     POST_ACTUAL,
     EDITAR_POST,
-    ELIMINAR_POST
+    ELIMINAR_POST,
 } from '../../types';
 
+import clienteAxios from '../../config/axios';
 
 const PostState = props =>{
-    const posts = [
-        {
-            id: 1,
-            titulo: 'manzana',
-            contenido: 'lalalalalalalalalalal',
-            fecha: Date.now()
-        },
-        {
-            id: 2,
-            titulo: 'pera',
-            contenido: 'lalalalalalalalalalal',
-            fecha: Date.now()
-        },
-        {
-            id: 3,
-            titulo: 'zanahoria',
-            contenido: 'lalalalalalalalalalal',
-            fecha: Date.now()
-        },
-        {
-            id: 4,
-            titulo: 'tomate',
-            contenido: 'lalalalalalalalalalal',
-            fecha: Date.now()
-        }
-    ]
+    
     const initialState = {
         posts: [ ],
         errorformulario: false,
@@ -52,26 +28,47 @@ const PostState = props =>{
     const [state, dispatch] = useReducer(postReducer, initialState);
 
     //obtener los post
-    const obtenerPosts = () =>{
-        dispatch({
+    const obtenerPosts = async () =>{
+
+        try {
+            const resultado = await clienteAxios.get('/api/posts');
+            //console.log(resultado);
+            dispatch({
             type: OBTENER_POSTS,
-            payload: posts
-        })
+            payload: resultado.data.posteos
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
     //Agregar nuevo post
-    const agregarPost = post =>{
-        post.id = uuidv4();
+    const agregarPost = async post =>{
+       // post.id = uuidv4();
+       try {
+        const resultado = await clienteAxios.post('/api/posts', post);
+        console.log(resultado);
+
         dispatch({
             type: AGREGAR_POSTS,
-            payload: post
+            payload: resultado.data
         })
+    } catch (error) {
+         console.log(error.response);
+    }
+        
     }
     //Validar formulario
     const mostrarError = () =>{
         dispatch({
             type: VALIDAR_FORMULARIO
         })
+        setTimeout( ()=>{
+            dispatch({
+                type:BORRAR_ERROR
+            })
+        }, 5000 );
     }
+
     //Selecciona el Post a editar
     const postActual = postId =>{
         dispatch({

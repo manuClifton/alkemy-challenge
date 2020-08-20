@@ -7,9 +7,14 @@ Pasos para la creacion de la app
 4)npm i react-router-dom
 5)DATE-FNS ---> npm i date-fns  // visibilidad de las fechas 
 6)npm i -D uuid 
-7)
-8)
-9)
-10)
+7)Crear carpeta servidor y abrir una nueva terminarl
+8)npm init // seguir todos los pasos
+9)npm i -D nodemon //reinisia el servidor cada ves que hay cambios
+10)npm i express mongoose dotenv // expres es el servidor, mongoose es el orm de mongo para facilitar consultas a DB,
+ dotenv permite crear archivo con variables de entorno
+11)npm i express-validator 
+12)npm i cors
+13) desde cliente instalar axios: npm i axios
+14)
 
-//Librerias: normalize, googlefont, ,bootwach, date-fns
+//Librerias: normalize, googlefont, ,bootwach, date-fns, dotenv, express-validator

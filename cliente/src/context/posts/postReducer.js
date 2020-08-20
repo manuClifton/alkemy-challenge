@@ -2,6 +2,7 @@ import {
     OBTENER_POSTS,
     AGREGAR_POSTS,
     VALIDAR_FORMULARIO,
+    BORRAR_ERROR,
     POST_ACTUAL,
     EDITAR_POST,
     ELIMINAR_POST
@@ -12,6 +13,7 @@ export default (state, action) =>{
 
     switch(action.type){
         case OBTENER_POSTS:
+           // console.log(action.payload);
             return{
                 ...state,
                 posts: action.payload
@@ -27,6 +29,11 @@ export default (state, action) =>{
                ...state,
                errorformulario: true
             }
+        case BORRAR_ERROR:
+            return{
+               ...state,
+               errorformulario: false
+            }
         case POST_ACTUAL:
             return{
                 ...state,
@@ -36,6 +43,7 @@ export default (state, action) =>{
             return{
                 ...state,
                 posts: state.posts.map(post =>post.id === action.payload.id ? action.payload : post),
+                errorformulario: false,
                 post: null
             }
         case ELIMINAR_POST:

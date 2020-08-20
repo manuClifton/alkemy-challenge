@@ -1,5 +1,4 @@
 import React, {useContext, useEffect} from 'react';
-import {Link} from 'react-router-dom';
 import postContext from '../../context/posts/postContext';
 import PostCompleto from './PostCompleto';
 
@@ -12,6 +11,7 @@ const ListadoCard = () => {
     useEffect(() =>{
         obtenerPosts();
     }, []);
+    
     return ( 
 
         <ul className="listado-post">
@@ -21,7 +21,7 @@ const ListadoCard = () => {
                     <li>
                         {posts.map(post =>(
                             <PostCompleto 
-                                key={post.id}
+                                key={post._id}
                                 post={post}
                             />
                         ))}

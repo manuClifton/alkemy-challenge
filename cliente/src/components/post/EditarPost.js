@@ -7,13 +7,13 @@ const EditarPost = (props) => {
     
         //obtengo state
         const postsContext = useContext(postContext);
-        const { post, editarPost, errorformulario } = postsContext;
+        const { post, editarPost, errorformulario, mostrarError } = postsContext;
 
         useEffect(()=>{
             if(post != null){
                 guardarPost(post[0]);// ACA ESTA EL PROBLEMA CREO.. SE GUARDA UN ARRAY DE OBJETOS CUANDO TIENE QUE SER UN SOLO OBJT
             }else{
-                guardarError(true);
+              //  guardarError(true);
             }
         },[post])
        //state para el post
@@ -23,12 +23,10 @@ const EditarPost = (props) => {
            contenido: '',
            fecha: new Date()
         })
-     //console.log(posteo);
     //extraigo el titulo del post
-   // const {titulo, contenido} = posteo;
-   // console.log(titulo); // undefined nose porq
+    const {titulo, contenido} = posteo;
 
-    const [error, guardarError] = useState(false);
+    //const [error, guardarError] = useState(false);
 
     //leo los contenidos del input y textarea
     const onChangePost = e =>{
@@ -44,8 +42,13 @@ const EditarPost = (props) => {
 
         //Validar el formulario
 
-
-
+        if(titulo === '' || contenido === ''){
+            mostrarError();
+            return;
+        }
+        
+        
+        
         
         //console.log(posteo)
         guardarPost({
@@ -78,7 +81,7 @@ const EditarPost = (props) => {
                                  className="form-control"
                                  placeholder="Titulo"
                                  name="titulo"
-                                 value={posteo.titulo}
+                                 value={titulo}
                                 onChange={onChangePost}
                              />
                          </div>
@@ -90,7 +93,7 @@ const EditarPost = (props) => {
                                  className="form-control"
                                  placeholder="Contenido"
                                  name="contenido"
-                                 value={posteo.contenido}
+                                 value={contenido}
                                  onChange={onChangePost}
                              />
                          </div>
@@ -99,7 +102,7 @@ const EditarPost = (props) => {
                              className="btn btn-primary font-weight-bold text-uppercase d-block w-100" 
                          > Editar Post</button>
                      </form>
-
+                     {errorformulario ? <p className="mensaje error">Ambos campos son obligatorios</p>  : null }
                  </div>
              </div>
         </div>

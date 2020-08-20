@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 
 import postContext from '../../context/posts/postContext';
 
@@ -6,7 +6,7 @@ const NuevoPost = (props) => {
 
     //obtengo state
     const postsContext = useContext(postContext);
-    const { errorformulario, agregarPost, mostrarError} = postsContext;
+    const { agregarPost, errorformulario, mostrarError} = postsContext;
 
     //state para el post
     const [posteo, guardarPost] = useState({
@@ -36,10 +36,12 @@ const NuevoPost = (props) => {
             mostrarError();
             return;
         }
+
+  
         //agregar al state
         agregarPost(posteo);
         //reiniciar el form y redireccionar a inicio
-        //props.history.push('/');
+        props.history.push('/');
     }
     
     

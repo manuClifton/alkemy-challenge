@@ -1,7 +1,5 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'; // formatea las fechas
-import {es} from 'date-fns/locale'; // cambia el idioma de el date
 import postContext from '../../context/posts/postContext';
         
 const PostCompleto = ({post}) => {
@@ -11,9 +9,9 @@ const PostCompleto = ({post}) => {
     const { postActual, eliminarPost} = postsContext;
 
     //Eliminar post
-    const onClickElimninar = () =>{
+ /*    const onClickElimninar = () =>{
         eliminarPost(post.id)
-    }
+    } */
 
     return ( 
         <div className="row justify-content-center mt-5">

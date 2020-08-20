@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'; // formatea las fechas
 import {es} from 'date-fns/locale'; // cambia el idioma de el date
 
